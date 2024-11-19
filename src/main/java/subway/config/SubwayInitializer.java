@@ -1,13 +1,14 @@
 package subway.config;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import subway.domain.Line;
 import subway.domain.LineInfo;
 import subway.domain.MapRepository;
 import subway.domain.LineRepository;
 import subway.domain.Station;
+import subway.domain.StationAddedRepository;
 import subway.domain.StationRepository;
 
 public class SubwayInitializer {
@@ -47,10 +48,11 @@ public class SubwayInitializer {
     }
 
     private static List<Station> makeStations(String[] stations) {
-        List<Station> stationList = new ArrayList<>();
+        List<Station> stationList = new LinkedList<>();
 
         for (String station : stations) {
             stationList.add(generateStation(station));
+            StationAddedRepository.addStation(generateStation(station));
         }
         return stationList;
     }
