@@ -25,7 +25,7 @@ public class StationService {
         }
     }
 
-    public static void checkStation() {
+    public static void displayStation() {
         StationRepository.stations().forEach(station -> SubwayOutputView.print(station.getName()));
     }
 
