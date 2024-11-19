@@ -19,4 +19,8 @@ public class StationRepository {
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
+
+    public static boolean isStationAlreadyExist(String name) {
+        return stations.stream().anyMatch(station -> Objects.equals(station.getName(), name));
+    }
 }
