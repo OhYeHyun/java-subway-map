@@ -13,9 +13,9 @@
 - [ ] : List<Line>
 
 - LineInfo
-- [ ] : Map<노선 이름, List<Station>>
+- [ ] : Map<Line, List<Station>>
 
-- Map
+- MapRepository
 - [ ] : List<LineInfo>
 
 - StationService
