@@ -1,5 +1,6 @@
 package subway.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LineInfo {
@@ -9,5 +10,13 @@ public class LineInfo {
     public LineInfo(Line line, List<Station> stations) {
         this.line = line;
         this.stations = stations;
+    }
+
+    public Line getLine() {
+        return line;
+    }
+
+    public List<Station> getStations() {
+        return Collections.unmodifiableList(stations);
     }
 }
