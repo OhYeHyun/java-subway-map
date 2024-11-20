@@ -22,6 +22,9 @@ public class LineService {
     public static void deleteLine(String lineName) {
         Line line = LineRepository.findLine(lineName);
         LineRepository.deleteLine(line);
+
+        LineInfo lineInfo = MapRepository.findLineInfo(lineName);
+        MapRepository.deleteLineInfo(lineInfo);
     }
 
     public static void displayLine() {
