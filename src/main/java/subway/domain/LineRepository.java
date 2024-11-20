@@ -20,7 +20,7 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static boolean isLineAlreadyExist(String name) {
+    public static boolean isLineExist(String name) {
         return lines.stream().anyMatch(line -> Objects.equals(line.getName(), name));
     }
 }
