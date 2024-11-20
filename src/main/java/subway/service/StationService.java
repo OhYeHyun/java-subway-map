@@ -1,7 +1,5 @@
 package subway.service;
 
-import subway.ErrorMessage.DataErrorMessage;
-import subway.domain.MapRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.SubwayOutputView;
@@ -22,21 +20,5 @@ public class StationService {
 
     private static Station generateStation(String station) {
         return new Station(station);
-    }
-
-    private static void checkAddStation(String station) {
-        if (StationRepository.isStationExist(station)) {
-            throw new IllegalArgumentException(DataErrorMessage.MUST_BE_UNIQUE_STATION.getMessage());
-        }
-    }
-
-    private static void checkDeleteStation(String station) {
-        if (!StationRepository.isStationExist(station)) {
-            throw new IllegalArgumentException(DataErrorMessage.MUST_BE_EXISTING_STATION.getMessage());
-        }
-        
-        if (!MapRepository.isStationAddedMap(station)) {
-            throw new IllegalArgumentException(DataErrorMessage.MUST_NOT_BE_ADDED_TO_LINE.getMessage());
-        }
     }
 }

@@ -41,28 +41,4 @@ public class LineService {
     private static Station findStation(String station) {
         return StationRepository.findStation(station);
     }
-
-    private static void checkAddLine(String line) {
-        if (LineRepository.isLineExist(line)) {
-            throw new IllegalArgumentException(DataErrorMessage.MUST_BE_UNIQUE_LINE.getMessage());
-        }
-    }
-
-    private static void checkAddUpward(String upward) {
-        if (!StationRepository.isStationExist(upward)) {
-            throw new IllegalArgumentException(DataErrorMessage.MUST_BE_EXISTING_STATION.getMessage());
-        }
-    }
-
-    private static void checkAddDownward(String downward) {
-        if (!StationRepository.isStationExist(downward)) {
-            throw new IllegalArgumentException(DataErrorMessage.MUST_BE_EXISTING_STATION.getMessage());
-        }
-    }
-
-    private static void checkDeleteLine(String line) {
-        if (!StationRepository.isStationExist(line)) {
-            throw new IllegalArgumentException(DataErrorMessage.MUST_BE_EXISTING_STATION.getMessage());
-        }
-    }
  }
