@@ -23,4 +23,8 @@ public class LineRepository {
     public static boolean isLineExist(String name) {
         return lines.stream().anyMatch(line -> Objects.equals(line.getName(), name));
     }
+
+    public static Line findLine(String name) {
+        return lines.stream().filter(line ->  Objects.equals(line.getName(), name)).findFirst().get();
+    }
 }

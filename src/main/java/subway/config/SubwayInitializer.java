@@ -8,11 +8,10 @@ import subway.domain.LineInfo;
 import subway.domain.MapRepository;
 import subway.domain.LineRepository;
 import subway.domain.Station;
-import subway.domain.StationAddedRepository;
 import subway.domain.StationRepository;
 
 public class SubwayInitializer {
-    public static final String[] STATIONS = {"교대역", "강남역", "역삼역", "남부터미널역", "양재시민의숲역", "매봉역"};
+    public static final String[] STATIONS = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
     public static final String[] LINES = {"2호선", "3호선", "신분당선"};
     public static final String[] LINE_INFO1 = {"2호선", "교대역", "강남역", "역삼역"};
     public static final String[] LINE_INFO2 = {"3호선", "교대역", "남부터미널역", "양재역", "매봉역"};
@@ -40,19 +39,18 @@ public class SubwayInitializer {
 
     private static void initializeMap() {
         for (String[] lineInfo : LINE_INFOS) {
-            Line line = generateLine(lineInfo[0]);
+            Line line = LineRepository.findLine(lineInfo[0]);
             String[] stations = Arrays.copyOfRange(lineInfo, 1, lineInfo.length);
 
-            MapRepository.addLineInfo(generateLineInfo(line, makeStations(stations)));
+            MapRepository.addLineInfo(generateLineInfo(line, findStations(stations)));
         }
     }
 
-    private static List<Station> makeStations(String[] stations) {
+    private static List<Station> findStations(String[] stations) {
         List<Station> stationList = new LinkedList<>();
 
         for (String station : stations) {
-            stationList.add(generateStation(station));
-            StationAddedRepository.addStation(generateStation(station));
+            stationList.add(StationRepository.findStation(station));
         }
         return stationList;
     }

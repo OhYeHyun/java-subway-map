@@ -1,6 +1,8 @@
 package subway.domain;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +27,6 @@ public class StationRepository {
     }
     
     public static Station findStation(String name) {
-        return stations.stream().filter(station ->  Objects.equals(station.getName(), name)).findFirst().get();
+        return stations.stream().filter(station -> Objects.equals(station.getName(), name)).findFirst().get();
     }
 }
