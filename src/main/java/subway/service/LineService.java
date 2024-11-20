@@ -2,7 +2,6 @@ package subway.service;
 
 import java.util.Arrays;
 import java.util.List;
-import subway.ErrorMessage.DataErrorMessage;
 import subway.domain.Line;
 import subway.domain.LineInfo;
 import subway.domain.LineRepository;
@@ -13,12 +12,16 @@ import subway.view.SubwayOutputView;
 
 public class LineService {
 
-    public static void addLine(String line, String upward, String downward) {
-        MapRepository.addLineInfo(generateLineInfo(line, upward, downward));
+    public static void addLine(String lineName, String upward, String downward) {
+        Line line = generateLine(lineName);
+        List<Station> stations = Arrays.asList(findStation(upward), findStation(downward));
+
+        MapRepository.addLineInfo(generateLineInfo(line, stations));
     }
 
-    public static void deleteLine(String line) {
-        StationRepository.deleteStation(line);
+    public static void deleteLine(String lineName) {
+        Line line = LineRepository.findLine(lineName);
+        LineRepository.deleteLine(line);
     }
 
     public static void displayLine() {
@@ -29,13 +32,8 @@ public class LineService {
         return new Line(line);
     }
 
-    private static LineInfo generateLineInfo(String lineName, String upward, String downward) {
-        Line line = generateLine(lineName);
-        List<Station> stations = Arrays.asList(findStation(upward), findStation(downward));
-
-        LineRepository.addLine(line);
-
-        return new LineInfo(line, stations);
+    private static LineInfo generateLineInfo(Line line, List<Station> stations) {
+         return new LineInfo(line, stations);
     }
 
     private static Station findStation(String station) {

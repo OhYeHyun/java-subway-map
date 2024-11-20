@@ -1,8 +1,6 @@
 package subway.domain;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -18,8 +16,8 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static void deleteStation(String name) {
-        stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public static void deleteStation(Station station) {
+        stations.remove(station);
     }
 
     public static boolean isStationExist(String name) {
@@ -28,5 +26,9 @@ public class StationRepository {
     
     public static Station findStation(String name) {
         return stations.stream().filter(station -> Objects.equals(station.getName(), name)).findFirst().get();
+    }
+
+    public static void clear() {
+        stations.clear();
     }
 }

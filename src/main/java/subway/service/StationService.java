@@ -10,7 +10,8 @@ public class StationService {
         StationRepository.addStation(generateStation(station));
     }
 
-    public static void deleteStation(String station) {
+    public static void deleteStation(String stationName) {
+        Station station = StationRepository.findStation(stationName);
         StationRepository.deleteStation(station);
     }
 
