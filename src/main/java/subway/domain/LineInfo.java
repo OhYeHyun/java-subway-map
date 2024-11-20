@@ -19,4 +19,12 @@ public class LineInfo {
     public List<Station> getStations() {
         return Collections.unmodifiableList(stations);
     }
+
+    public void addSection(Station station, int order) {
+        stations.add(order - 1, station);
+    }
+
+    public void deleteSection(Station station) {
+        stations.remove(station);
+    }
 }

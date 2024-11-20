@@ -29,4 +29,8 @@ public class MapRepository {
 
         return stations.stream().toList();
     }
+
+    public static LineInfo findLineInfo(String name) {
+        return map.stream().filter(lineInfo -> Objects.equals(lineInfo.getLine().getName(), name)).findFirst().get();
+    }
 }
