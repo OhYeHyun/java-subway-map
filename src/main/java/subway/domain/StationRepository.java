@@ -16,11 +16,11 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public static void deleteStation(String name) {
+        stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static boolean isStationAlreadyExist(String name) {
+    public static boolean isStationExist(String name) {
         return stations.stream().anyMatch(station -> Objects.equals(station.getName(), name));
     }
     
