@@ -18,6 +18,8 @@ public class MapRepository {
         map.add(lineInfo);
     }
 
+    public static void deleteLineInfo(LineInfo lineInfo) { map.remove(lineInfo); }
+
     public static boolean isStationAddedMap(String name) {
         List<Station> stations = stationsAddedToMap();
         return stations.stream().anyMatch(station -> Objects.equals(station.getName(), name));
@@ -28,6 +30,10 @@ public class MapRepository {
         map.forEach((lineInfo) -> stations.addAll(lineInfo.getStations()));
 
         return stations.stream().toList();
+    }
+
+    public static boolean isLineInfoExist(String name) {
+        return map.stream().anyMatch(lineInfo -> Objects.equals(lineInfo.getLine().getName(), name));
     }
 
     public static LineInfo findLineInfo(String name) {
