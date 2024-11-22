@@ -28,7 +28,9 @@ public class LineService {
     }
 
     public static void displayLine() {
-        LineRepository.lines().forEach(line -> SubwayOutputView.print(line.getName()));
+        LineRepository.lines().forEach(line -> {
+            SubwayOutputView.print(DisplayInfo.FORMAT.getInfo(line.getName()));
+        });
     }
 
     private static Line generateLine(String line) {

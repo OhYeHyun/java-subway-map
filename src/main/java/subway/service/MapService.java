@@ -3,6 +3,7 @@ package subway.service;
 import java.util.List;
 import subway.domain.MapRepository;
 import subway.domain.Station;
+import subway.view.SubwayOutputView;
 
 public class MapService {
 
@@ -14,17 +15,13 @@ public class MapService {
     }
 
     private static void printLineHead(String line) {
-        print(DisplayInfo.FORMAT.getInfo(line));
-        print(DisplayInfo.INFO_LINE.getInfo());
+        SubwayOutputView.print(DisplayInfo.FORMAT.getInfo(line));
+        SubwayOutputView.print(DisplayInfo.INFO_LINE.getInfo());
     }
 
     private static void printStations(List<Station> stations) {
         stations.forEach(station -> {
-            print(DisplayInfo.FORMAT.getInfo(station.getName()));
+            SubwayOutputView.print(DisplayInfo.FORMAT.getInfo(station.getName()));
         });
-    }
-
-    private static void print(String str) {
-        System.out.println(str);
     }
 }

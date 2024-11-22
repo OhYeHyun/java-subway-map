@@ -24,16 +24,16 @@ public class LineInfo {
         return Collections.unmodifiableList(stations);
     }
 
-    public boolean isStationExistInLineInfo(String name) {
-        return stations.stream().anyMatch(line -> Objects.equals(line.getName(), name));
-    }
-
     public void addSection(Station station, int order) {
         stations.add(order - 1, station);
     }
 
     public void deleteSection(Station station) {
         stations.remove(station);
+    }
+
+    public boolean isStationExistInLineInfo(String name) {
+        return stations.stream().anyMatch(line -> Objects.equals(line.getName(), name));
     }
 
     public boolean canAddStation(int order) {
