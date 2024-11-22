@@ -1,4 +1,4 @@
-package subway.Constant;
+package subway.constant;
 
 public enum Target {
     STATION_LIST("역 목록"),
@@ -12,7 +12,10 @@ public enum Target {
     STATION("역이름을"),
     ORDER("순서를"),
     LINE_OF_SECTION("구간의 노선"),
-    STATION_OF_SECTION("구간의 역");
+    STATION_OF_SECTION("구간의 역"),
+    STATION_OF_SUBWAY("지하철 역"),
+    LINE_OF_SUBWAY("지하철 노선"),
+    SECTION_OF_SUBWAY("구간");
 
     private final String target;
 

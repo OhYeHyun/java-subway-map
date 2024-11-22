@@ -1,7 +1,8 @@
 package subway.service;
 
 import java.util.List;
-import subway.Constant.Service;
+import subway.constant.Service;
+import subway.domain.LineInfo;
 import subway.domain.MapRepository;
 import subway.domain.Station;
 import subway.view.SubwayOutputView;
@@ -9,10 +10,15 @@ import subway.view.SubwayOutputView;
 public class MapService {
 
     public static void displayMap() {
-        MapRepository.map().forEach(lineInfo -> {
+        boolean isFirst = false;
+        for (LineInfo lineInfo : MapRepository.map()) {
+            if (isFirst) {
+                SubwayOutputView.printLineSpace();
+            }
+            isFirst = true;
             printLineHead(lineInfo.getLine().getName());
             printStations(lineInfo.getStations());
-        });
+        }
     }
 
     private static void printLineHead(String line) {

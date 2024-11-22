@@ -1,5 +1,6 @@
 package subway.service;
 
+import subway.constant.Service;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.SubwayOutputView;
@@ -16,7 +17,7 @@ public class StationService {
     }
 
     public static void displayStation() {
-        StationRepository.stations().forEach(station -> SubwayOutputView.print(station.getName()));
+        StationRepository.stations().forEach(station -> SubwayOutputView.print(Service.FORMAT.getInfo(station.getName())));
     }
 
     private static Station generateStation(String station) {
