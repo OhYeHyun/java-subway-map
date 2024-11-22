@@ -9,7 +9,7 @@ public class LineValidator {
     public static final int LINE_NAME_LENGTH = 2;
 
     public static void checkLineToAdd(String line) {
-        if (line.length() < LINE_NAME_LENGTH) {
+        if (line.length() <= LINE_NAME_LENGTH) {
             throw new IllegalArgumentException(DataErrorMessage.LINE_NAME_LENGTH_INVALID.getMessage());
         }
 

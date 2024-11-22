@@ -9,7 +9,7 @@ public class StationValidator {
     public static final int STATION_NAME_LENGTH = 2;
 
     public static void checkStationToAdd(String station) {
-        if (station.length() < STATION_NAME_LENGTH) {
+        if (station.length() <= STATION_NAME_LENGTH) {
             throw new IllegalArgumentException(DataErrorMessage.STATION_NAME_LENGTH_INVALID.getMessage());
         }
 
