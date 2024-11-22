@@ -1,6 +1,7 @@
 package subway.service;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import subway.constant.Service;
 import subway.domain.Line;
@@ -17,7 +18,7 @@ public class LineService {
         Line line = generateLine(lineName);
         LineRepository.addLine(line);
 
-        List<Station> stations = Arrays.asList(findStation(upward), findStation(downward));
+        List<Station> stations = new LinkedList<>(Arrays.asList(findStation(upward), findStation(downward)));
 
         MapRepository.addLineInfo(generateLineInfo(line, stations));
     }
