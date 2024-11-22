@@ -1,9 +1,11 @@
 package subway.controller;
 
-import static subway.view.SubwayInputView.getNumber;
+import static subway.view.SubwayInputView.getInput;
 
 import java.util.Objects;
+import subway.ErrorMessage.ValidatorErrorMessage;
 import subway.config.SubwayInitializer;
+import subway.constant.Menu;
 import subway.service.LineService;
 import subway.service.MapService;
 import subway.service.SectionService;
@@ -22,7 +24,7 @@ public class SubwayController {
         boolean done = false;
         while (!done) {
             SubwayOutputView.printMain();
-            String input = selectOption();
+            String input = selectOption(Menu.MAIN.getOptions().length);
 
             processOption(input);
 
@@ -32,29 +34,33 @@ public class SubwayController {
         }
     }
 
-    private String selectOption() {
-        SubwayOutputView.selectOption();
-        return getInput();
-    }
-
-
-
-    private String getInput() {
-        return SubwayInputView.getInput();
+    private String selectOption(int option) {
+         return SubwayInputView.getOption();
     }
 
     private void processOption(String option) {
+         boolean isMatch = false;
         if (Objects.equals(option, "1")) {
             processStation();
+            isMatch = true;
         }
         if (Objects.equals(option, "2")) {
             processLine();
+            isMatch = true;
         }
         if (Objects.equals(option, "3")) {
             processSection();
+            isMatch = true;
         }
         if (Objects.equals(option, "4")) {
             processMap();
+            isMatch = true;
+        }
+        if (Objects.equals(option, "Q")) {
+            isMatch = true;
+        }
+        if (!isMatch) {
+            SubwayOutputView.noticeNotFoundOption();
         }
     }
 
@@ -62,7 +68,7 @@ public class SubwayController {
         boolean isError = true;
         while (isError) {
             SubwayOutputView.printStation();
-            String option = selectOption();
+            String option = selectOption(Menu.STATION.getOptions().length);
             try {
                 if (Objects.equals(option, "1")) {
                     addStation();
@@ -79,8 +85,11 @@ public class SubwayController {
                 if (Objects.equals(option, "B")) {
                     isError = false;
                 }
+                if (isError) {
+                    SubwayOutputView.noticeNotFoundOption();
+                }
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                SubwayOutputView.print(e.getMessage());
             }
         }
     }
@@ -114,7 +123,7 @@ public class SubwayController {
         boolean isError = true;
         while (isError) {
             SubwayOutputView.printLine();
-            String option = selectOption();
+            String option = selectOption(Menu.LINE.getOptions().length);
             try {
                 if (Objects.equals(option, "1")) {
                     addLine();
@@ -131,8 +140,11 @@ public class SubwayController {
                 if (Objects.equals(option, "B")) {
                     isError = false;
                 }
+                if (isError) {
+                    SubwayOutputView.noticeNotFoundOption();
+                }
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                SubwayOutputView.print(e.getMessage());
             }
         }
     }
@@ -158,7 +170,7 @@ public class SubwayController {
     }
 
     private void deleteLine() {
-        SubwayOutputView.inputStationToDelete();
+        SubwayOutputView.inputLineToDelete();
         String line = getInput();
 
         LineValidator.checkLineToDelete(line);
@@ -176,7 +188,7 @@ public class SubwayController {
         boolean isError = true;
         while (isError) {
             SubwayOutputView.printsSection();
-            String option = selectOption();
+            String option = selectOption(Menu.SECTION.getOptions().length);
             try {
                 if (Objects.equals(option, "1")) {
                     addSection();
@@ -189,8 +201,11 @@ public class SubwayController {
                 if (Objects.equals(option, "B")) {
                     isError = false;
                 }
+                if (isError) {
+                    SubwayOutputView.noticeNotFoundOption();
+                }
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                SubwayOutputView.print(e.getMessage());
             }
         }
     }
@@ -207,7 +222,7 @@ public class SubwayController {
         SectionValidator.checkStationToAdd(line, station);
 
         SubwayOutputView.inputOrderToAddSection();
-        int order = getNumber();
+        int order = SubwayInputView.getOrder();
 
         SectionValidator.checkOrderToAdd(line,order);
 
@@ -216,7 +231,7 @@ public class SubwayController {
     }
 
     private void deleteSection() {
-        SubwayOutputView.inputLineToDelete();
+        SubwayOutputView.inputLineToDeleteSection();
         String line = getInput();
 
         SectionValidator.checkLineToDelete(line);

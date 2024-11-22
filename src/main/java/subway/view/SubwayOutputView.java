@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.ErrorMessage.ValidatorErrorMessage;
 import subway.constant.Instruction;
 import subway.constant.Menu;
 import subway.constant.OptionList;
@@ -89,6 +90,11 @@ public class SubwayOutputView {
     public static void inputStationToDeleteSection() {
         printLineSpace();
         print(Instruction.INPUT_TO_DELETE.getInstruction(Target.STATION_OF_SECTION.getTarget()));
+    }
+
+    public static void noticeNotFoundOption() {
+        printLineSpace();
+        print(ValidatorErrorMessage.MUST_BE_NUMBER_IN_MENU.getMessage());
     }
 
     public static void noticeStationAdded() {

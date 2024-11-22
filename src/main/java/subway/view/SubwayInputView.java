@@ -10,11 +10,16 @@ public class SubwayInputView {
         return scanner.nextLine();
     }
 
-    public static int getNumber() {
+    public static String getOption() {
+        SubwayOutputView.selectOption();
+        return getInput();
+    }
+
+    public static int getOrder() {
         while (true) {
             String number = getInput();
             try {
-                return NumberValidator.validate(number);
+                return NumberValidator.validateOrder(number);
             } catch (IllegalArgumentException e) {
                 SubwayOutputView.print(e.getMessage());
             }
