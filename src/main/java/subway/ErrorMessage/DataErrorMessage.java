@@ -2,10 +2,10 @@ package subway.ErrorMessage;
 
 public enum DataErrorMessage {
     STATION_NAME_LENGTH_INVALID("지하철 역은 2글자 이상이어야 합니다."),
-    LINE_NAME_LENGTH_INVALID("지하철 역은 2글자 이상이어야 합니다."),
+    LINE_NAME_LENGTH_INVALID("노선 이름은 2글자 이상이어야 합니다."),
 
-    ALREADY_EXIST_STATION("이미 존재하는 지하철 역입니다."),
-    ALREADY_EXIST_LINE("이미 존재하는 노선입니다."),
+    ALREADY_EXIST_STATION("이미 등록된 역 이름입니다."),
+    ALREADY_EXIST_LINE("이미 등록된 노선 이름입니다."),
     NOT_FOUND_STATION("해당 지하철 역이 존재하지 않습니다."),
     NOT_FOUND_LINE("해당 노선이 존재하지 않습니다."),
     CANNOT_DELETE_STATION_ADDED_TO_LINE("노선에 등록된 역은 삭제할 수 없습니다."),
