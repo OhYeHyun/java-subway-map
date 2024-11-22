@@ -2,7 +2,7 @@ package subway.service;
 
 import java.util.Arrays;
 import java.util.List;
-import subway.Constant.Service;
+import subway.constant.Service;
 import subway.domain.Line;
 import subway.domain.LineInfo;
 import subway.domain.LineRepository;
@@ -15,6 +15,8 @@ public class LineService {
 
     public static void addLine(String lineName, String upward, String downward) {
         Line line = generateLine(lineName);
+        LineRepository.addLine(line);
+
         List<Station> stations = Arrays.asList(findStation(upward), findStation(downward));
 
         MapRepository.addLineInfo(generateLineInfo(line, stations));
