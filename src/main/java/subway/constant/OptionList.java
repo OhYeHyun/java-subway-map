@@ -1,13 +1,13 @@
-package subway.Constant;
+package subway.constant;
 
-public enum Option {
+public enum OptionList {
     OPTION("%s. %s"),
     QUIT("Q. 종료"),
     BACK("B. 돌아가기");
 
     private final String option;
 
-    Option(String option) {
+    OptionList(String option) {
         this.option = option;
     }
 

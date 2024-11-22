@@ -1,8 +1,6 @@
 package subway.ErrorMessage;
 
 public enum DataErrorMessage {
-    ERROR_MESSAGE_BEGINNING("[ERROR] "),
-
     STATION_NAME_LENGTH_INVALID("지하철 역은 2글자 이상이어야 합니다."),
     LINE_NAME_LENGTH_INVALID("지하철 역은 2글자 이상이어야 합니다."),
 
@@ -16,6 +14,7 @@ public enum DataErrorMessage {
     INVALID_ORDER("해당 순서에 지하철 역을 추가할 수 없습니다."),
     NOT_ENOUGH_STATION_TO_DELETE("해당 노선은 더이상 지하철 역을 삭제할 수 없습니다");
 
+    private static final String PREFIX = System.lineSeparator() + "[ERROR] ";
     private final String message;
 
     DataErrorMessage(String message) {
@@ -23,6 +22,6 @@ public enum DataErrorMessage {
     }
 
     public String getMessage() {
-        return ERROR_MESSAGE_BEGINNING.message + message;
+        return PREFIX + message;
     }
 }

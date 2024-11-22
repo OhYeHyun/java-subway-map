@@ -1,4 +1,4 @@
-package subway.Constant;
+package subway.constant;
 
 public enum Menu {
     MAIN("메인", new String[]{"역 관리", "노선 관리", "구간 관리", "지하철 노선도 출력"}, false),

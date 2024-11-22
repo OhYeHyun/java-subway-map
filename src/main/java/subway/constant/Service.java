@@ -1,9 +1,9 @@
-package subway.Constant;
+package subway.constant;
 
 public enum Service {
     INFO_LINE("---"),
-    ADDED_STATION("%s이 등록되었습니다."),
-    DELETED_STATION("%s이 삭제되었습니다."),
+    ADD("%s이 등록되었습니다."),
+    DELETE("%s이 삭제되었습니다."),
     FORMAT("%s");
 
     private static final String PREFIX = "[INFO] ";

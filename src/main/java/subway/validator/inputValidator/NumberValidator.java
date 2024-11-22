@@ -1,4 +1,6 @@
-package subway.validator;
+package subway.validator.inputValidator;
+
+import subway.ErrorMessage.ValidatorErrorMessage;
 
 public class NumberValidator {
 
