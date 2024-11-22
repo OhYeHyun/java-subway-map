@@ -1,0 +1,21 @@
+package subway.Constant;
+
+public enum Option {
+    OPTION("%s. %s"),
+    QUIT("Q. 종료"),
+    BACK("B. 돌아가기");
+
+    private final String option;
+
+    Option(String option) {
+        this.option = option;
+    }
+
+    public String getOption() {
+        return option;
+    }
+
+    public String getOption(String number, String target) {
+        return String.format(option, number, target);
+    }
+}

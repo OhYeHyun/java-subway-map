@@ -2,6 +2,7 @@ package subway.service;
 
 import java.util.Arrays;
 import java.util.List;
+import subway.Constant.Service;
 import subway.domain.Line;
 import subway.domain.LineInfo;
 import subway.domain.LineRepository;
@@ -29,7 +30,7 @@ public class LineService {
 
     public static void displayLine() {
         LineRepository.lines().forEach(line -> {
-            SubwayOutputView.print(DisplayInfo.FORMAT.getInfo(line.getName()));
+            SubwayOutputView.print(Service.FORMAT.getInfo(line.getName()));
         });
     }
 
