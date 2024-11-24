@@ -13,39 +13,48 @@ import subway.domain.StationRepository;
 import subway.view.SubwayOutputView;
 
 public class LineService {
+    private final StationRepository stationRepository;
+    private final LineRepository lineRepository;
+    private final MapRepository mapRepository;
 
-    public static void addLine(String lineName, String upward, String downward) {
+    public LineService() {
+        this.stationRepository = StationRepository.getInstance();
+        this.lineRepository = LineRepository.getInstance();
+        this.mapRepository = MapRepository.getInstance();
+    }
+
+    public void addLine(String lineName, String upward, String downward) {
         Line line = generateLine(lineName);
-        LineRepository.addLine(line);
+        lineRepository.addLine(line);
 
         List<Station> stations = new LinkedList<>(Arrays.asList(findStation(upward), findStation(downward)));
 
-        MapRepository.addLineInfo(generateLineInfo(line, stations));
+        mapRepository.addLineInfo(generateLineInfo(line, stations));
     }
 
-    public static void deleteLine(String lineName) {
-        Line line = LineRepository.findLine(lineName);
-        LineRepository.deleteLine(line);
+    public void deleteLine(String lineName) {
+        Line line = lineRepository.findLine(lineName);
+        lineRepository.deleteLine(line);
 
-        LineInfo lineInfo = MapRepository.findLineInfo(lineName);
-        MapRepository.deleteLineInfo(lineInfo);
+        LineInfo lineInfo = mapRepository.findLineInfo(lineName);
+        mapRepository.deleteLineInfo(lineInfo);
     }
 
-    public static void displayLine() {
-        LineRepository.lines().forEach(line -> {
+    public void displayLine() {
+        lineRepository.lines().forEach(line -> {
             SubwayOutputView.print(Service.FORMAT.getInfo(line.getName()));
         });
     }
 
-    private static Line generateLine(String line) {
+    private Line generateLine(String line) {
         return new Line(line);
     }
 
-    private static LineInfo generateLineInfo(Line line, List<Station> stations) {
+    private LineInfo generateLineInfo(Line line, List<Station> stations) {
          return new LineInfo(line, stations);
     }
 
-    private static Station findStation(String station) {
-        return StationRepository.findStation(station);
+    private Station findStation(String station) {
+        return stationRepository.findStation(station);
     }
  }

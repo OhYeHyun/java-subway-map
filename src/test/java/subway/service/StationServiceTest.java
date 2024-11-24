@@ -13,12 +13,13 @@ class StationServiceTest {
     @Test
     @DisplayName("역 추가가 올바르게 되는지 확인")
     void 역_추가_테스트() {
-        StationRepository.clear();
+        StationRepository stationRepository = StationRepository.getInstance();
+        stationRepository.clear();
 
-        StationService.addStation("교대역");
-        StationService.addStation("강남역");
+        stationRepository.addStation(new Station("교대역"));
+        stationRepository.addStation(new Station("강남역"));
 
-        List<Station> result = StationRepository.stations();
+        List<Station> result = stationRepository.stations();
 
         assertThat(result.stream().map(Station::getName)).containsExactly("교대역", "강남역");
     }
@@ -26,14 +27,15 @@ class StationServiceTest {
     @Test
     @DisplayName("역 삭제가 올바르게 되는지 확인")
     void 역_삭제_테스트() {
-        StationRepository.clear();
+        StationRepository stationRepository = StationRepository.getInstance();
+        stationRepository.clear();
 
-        StationService.addStation("교대역");
-        StationService.addStation("강남역");
-        StationService.deleteStation("교대역");
-        StationService.deleteStation("강남역");
+        stationRepository.addStation(new Station("교대역"));
+        stationRepository.addStation(new Station("강남역"));
+        stationRepository.deleteStation(stationRepository.findStation("교대역"));
+        stationRepository.deleteStation(stationRepository.findStation("강남역"));
 
-        List<Station> result = StationRepository.stations();
+        List<Station> result = stationRepository.stations();
 
         assertThat(result.stream().map(Station::getName)).containsExactly();
     }

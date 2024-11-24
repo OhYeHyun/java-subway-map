@@ -6,21 +6,26 @@ import subway.domain.StationRepository;
 import subway.view.SubwayOutputView;
 
 public class StationService {
+    private final StationRepository stationRepository;
 
-    public static void addStation(String station) {
-        StationRepository.addStation(generateStation(station));
+    public StationService() {
+        this.stationRepository = StationRepository.getInstance();
     }
 
-    public static void deleteStation(String stationName) {
-        Station station = StationRepository.findStation(stationName);
-        StationRepository.deleteStation(station);
+    public void addStation(String station) {
+        stationRepository.addStation(generateStation(station));
     }
 
-    public static void displayStation() {
-        StationRepository.stations().forEach(station -> SubwayOutputView.print(Service.FORMAT.getInfo(station.getName())));
+    public void deleteStation(String stationName) {
+        Station station = stationRepository.findStation(stationName);
+        stationRepository.deleteStation(station);
     }
 
-    private static Station generateStation(String station) {
+    public void displayStation() {
+        stationRepository.stations().forEach(station -> SubwayOutputView.print(Service.FORMAT.getInfo(station.getName())));
+    }
+
+    private Station generateStation(String station) {
         return new Station(station);
     }
 }

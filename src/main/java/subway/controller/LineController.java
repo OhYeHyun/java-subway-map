@@ -9,6 +9,13 @@ import subway.view.SubwayInputView;
 import subway.view.SubwayOutputView;
 
 public class LineController {
+    private final LineValidator lineValidator;
+    private final LineService lineService;
+
+    public LineController(LineService lineService, LineValidator lineValidator) {
+        this.lineService = lineService;
+        this.lineValidator = lineValidator;
+    }
 
     private static String selectOption() {
         return SubwayInputView.getOption();
@@ -48,19 +55,19 @@ public class LineController {
         SubwayOutputView.inputLineToAdd();
         String line = getInput();
 
-        LineValidator.checkLineToAdd(line);
+        lineValidator.checkLineToAdd(line);
 
         SubwayOutputView.inputUpwardToAdd();
         String upward = getInput();
 
-        LineValidator.checkStationToAdd(upward);
+        lineValidator.checkStationToAdd(upward);
 
         SubwayOutputView.inputDownwardToAdd();
         String downward = getInput();
 
-        LineValidator.checkStationToAdd(downward);
+        lineValidator.checkStationToAdd(downward);
 
-        LineService.addLine(line, upward, downward);
+        lineService.addLine(line, upward, downward);
         SubwayOutputView.noticeLineAdded();
     }
 
@@ -68,14 +75,14 @@ public class LineController {
         SubwayOutputView.inputLineToDelete();
         String line = getInput();
 
-        LineValidator.checkLineToDelete(line);
+        lineValidator.checkLineToDelete(line);
 
-        LineService.deleteLine(line);
+        lineService.deleteLine(line);
         SubwayOutputView.noticeLineDeleted();
     }
 
     private void displayLine() {
         SubwayOutputView.displayLine();
-        LineService.displayLine();
+        lineService.displayLine();
     }
 }

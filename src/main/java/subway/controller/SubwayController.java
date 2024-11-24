@@ -1,7 +1,7 @@
 package subway.controller;
 
 import java.util.Objects;
-import subway.config.SubwayInitializer;
+import subway.service.SubwayInitializer;
 import subway.view.SubwayInputView;
 import subway.view.SubwayOutputView;
 
@@ -10,16 +10,18 @@ public class SubwayController {
     private final LineController lineController;
     private final SectionController sectionController;
     private final MapController mapController;
+    private final SubwayInitializer initializer;
 
-    public SubwayController(StationController stationController, LineController lineController, SectionController sectionController, MapController mapController) {
+    public SubwayController(StationController stationController, LineController lineController, SectionController sectionController, MapController mapController, SubwayInitializer initializer) {
         this.stationController = stationController;
         this.lineController = lineController;
         this.sectionController = sectionController;
         this.mapController = mapController;
+        this.initializer = initializer;
     }
 
      public void run() {
-        SubwayInitializer.initialize();
+         initializer.initialize();
 
         boolean done = false;
         while (!done) {

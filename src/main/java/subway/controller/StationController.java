@@ -9,6 +9,13 @@ import subway.view.SubwayInputView;
 import subway.view.SubwayOutputView;
 
 public class StationController {
+    private final StationService stationService;
+    private final StationValidator stationValidator;
+
+    public StationController(StationService stationService, StationValidator stationValidator) {
+        this.stationService = stationService;
+        this.stationValidator = stationValidator;
+    }
 
     private static String selectOption() {
         return SubwayInputView.getOption();
@@ -48,9 +55,9 @@ public class StationController {
         SubwayOutputView.inputStationToAdd();
         String station = getInput();
 
-        StationValidator.checkStationToAdd(station);
+        stationValidator.checkStationToAdd(station);
 
-        StationService.addStation(station);
+        stationService.addStation(station);
         SubwayOutputView.noticeStationAdded();
     }
 
@@ -58,14 +65,14 @@ public class StationController {
         SubwayOutputView.inputStationToDelete();
         String station = getInput();
 
-        StationValidator.checkStationToDelete(station);
+        stationValidator.checkStationToDelete(station);
 
-        StationService.deleteStation(station);
+        stationService.deleteStation(station);
         SubwayOutputView.noticeStationDeleted();
     }
 
     private void displayStation() {
         SubwayOutputView.displayStation();
-        StationService.displayStation();
+        stationService.displayStation();
     }
 }

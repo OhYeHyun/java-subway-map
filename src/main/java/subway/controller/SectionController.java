@@ -9,6 +9,13 @@ import subway.view.SubwayInputView;
 import subway.view.SubwayOutputView;
 
 public class SectionController {
+    private final SectionService sectionService;
+    private final SectionValidator sectionValidator;
+
+    public SectionController(SectionService sectionService, SectionValidator sectionValidator) {
+        this.sectionService = sectionService;
+        this.sectionValidator = sectionValidator;
+    }
 
     private static String selectOption() {
         return SubwayInputView.getOption();
@@ -44,19 +51,19 @@ public class SectionController {
         SubwayOutputView.inputLineToAddSection();
         String line = getInput();
 
-        SectionValidator.checkLineToAdd(line);
+        sectionValidator.checkLineToAdd(line);
 
         SubwayOutputView.inputStationToAddSection();
         String station = getInput();
 
-        SectionValidator.checkStationToAdd(line, station);
+        sectionValidator.checkStationToAdd(line, station);
 
         SubwayOutputView.inputOrderToAddSection();
         int order = SubwayInputView.getOrder();
 
-        SectionValidator.checkOrderToAdd(line,order);
+        sectionValidator.checkOrderToAdd(line,order);
 
-        SectionService.addSection(line, station, order);
+        sectionService.addSection(line, station, order);
         SubwayOutputView.noticeSectionAdded();
     }
 
@@ -64,14 +71,14 @@ public class SectionController {
         SubwayOutputView.inputLineToDeleteSection();
         String line = getInput();
 
-        SectionValidator.checkLineToDelete(line);
+        sectionValidator.checkLineToDelete(line);
 
         SubwayOutputView.inputStationToDeleteSection();
         String station = getInput();
 
-        SectionValidator.checkStationToDelete(line, station);
+        sectionValidator.checkStationToDelete(line, station);
 
-        SectionService.deleteSection(line, station);
+        sectionService.deleteSection(line, station);
         SubwayOutputView.noticeSectionDeleted();
     }
 }

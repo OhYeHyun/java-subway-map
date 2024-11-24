@@ -8,15 +8,17 @@ import org.junit.jupiter.api.Test;
 import subway.domain.LineInfo;
 import subway.domain.MapRepository;
 import subway.domain.Station;
+import subway.service.SubwayInitializer;
 
 class SubwayInitializerTest {
 
     @Test
     @DisplayName("초기 정보로 역, 노선, 노선도가 잘 생성되는지 확인")
     void 초기_생성_테스트() {
-        SubwayInitializer.initialize();
+        SubwayInitializer initializer = new SubwayInitializer();
+        initializer.initialize();
 
-        List<LineInfo> result = MapRepository.map();
+        List<LineInfo> result = MapRepository.getInstance().map();
 
         assertThat(result.get(0).getLine().getName()).isEqualTo("2호선");
         assertThat(result.get(0).getStations().stream().map(Station::getName))

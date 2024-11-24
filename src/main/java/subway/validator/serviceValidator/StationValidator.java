@@ -1,29 +1,36 @@
 package subway.validator.serviceValidator;
 
-import static subway.domain.MapRepository.isStationAddedMap;
-import static subway.domain.StationRepository.isStationExist;
-
 import subway.ErrorMessage.DataErrorMessage;
+import subway.domain.StationRepository;
+import subway.domain.MapRepository;
 
 public class StationValidator {
-    public static final int STATION_NAME_LENGTH = 2;
+    private static final int STATION_NAME_LENGTH = 2;
 
-    public static void checkStationToAdd(String station) {
+    private final StationRepository stationRepository;
+    private final MapRepository mapRepository;
+
+    public StationValidator() {
+        this.stationRepository = StationRepository.getInstance();
+        this.mapRepository = MapRepository.getInstance();
+    }
+
+    public void checkStationToAdd(String station) {
         if (station.length() <= STATION_NAME_LENGTH) {
             throw new IllegalArgumentException(DataErrorMessage.STATION_NAME_LENGTH_INVALID.getMessage());
         }
 
-        if (isStationExist(station)) {
+        if (stationRepository.isStationExist(station)) {
             throw new IllegalArgumentException(DataErrorMessage.ALREADY_EXIST_STATION.getMessage());
         }
     }
 
-    public static void checkStationToDelete(String station) {
-        if (!isStationExist(station)) {
+    public void checkStationToDelete(String station) {
+        if (!stationRepository.isStationExist(station)) {
             throw new IllegalArgumentException(DataErrorMessage.NOT_FOUND_STATION.getMessage());
         }
 
-        if (isStationAddedMap(station)) {
+        if (mapRepository.isStationAddedMap(station)) {
             throw new IllegalArgumentException(DataErrorMessage.CANNOT_DELETE_STATION_ADDED_TO_LINE.getMessage());
         }
     }

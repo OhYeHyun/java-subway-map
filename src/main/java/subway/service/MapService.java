@@ -8,10 +8,15 @@ import subway.domain.Station;
 import subway.view.SubwayOutputView;
 
 public class MapService {
+    private final MapRepository mapRepository;
 
-    public static void displayMap() {
+    public MapService() {
+        this.mapRepository = MapRepository.getInstance();
+    }
+
+    public void displayMap() {
         boolean isFirst = false;
-        for (LineInfo lineInfo : MapRepository.map()) {
+        for (LineInfo lineInfo : mapRepository.map()) {
             if (isFirst) {
                 SubwayOutputView.printLineSpace();
             }
@@ -21,12 +26,12 @@ public class MapService {
         }
     }
 
-    private static void printLineHead(String line) {
+    private void printLineHead(String line) {
         SubwayOutputView.print(Service.FORMAT.getInfo(line));
         SubwayOutputView.print(Service.INFO_LINE.getInfo());
     }
 
-    private static void printStations(List<Station> stations) {
+    private void printStations(List<Station> stations) {
         stations.forEach(station -> {
             SubwayOutputView.print(Service.FORMAT.getInfo(station.getName()));
         });
