@@ -3,7 +3,6 @@ package subway.validator.inputValidator;
 import subway.ErrorMessage.ValidatorErrorMessage;
 
 public class NumberValidator {
-    private static final int OPTION_START = 1;
 
     public static int validateOrder(String input) {
         validateIsNumeric(input);
