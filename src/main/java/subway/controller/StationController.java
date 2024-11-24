@@ -55,7 +55,7 @@ public class StationController {
         SubwayOutputView.inputStationToAdd();
         String station = getInput();
 
-        stationValidator.checkStationToAdd(station);
+        stationValidator.validateStationToAdd(station);
 
         stationService.addStation(station);
         SubwayOutputView.noticeStationAdded();
@@ -65,7 +65,7 @@ public class StationController {
         SubwayOutputView.inputStationToDelete();
         String station = getInput();
 
-        stationValidator.checkStationToDelete(station);
+        stationValidator.validateStationToDelete(station);
 
         stationService.deleteStation(station);
         SubwayOutputView.noticeStationDeleted();

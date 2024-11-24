@@ -55,17 +55,17 @@ public class LineController {
         SubwayOutputView.inputLineToAdd();
         String line = getInput();
 
-        lineValidator.checkLineToAdd(line);
+        lineValidator.validateLineToAdd(line);
 
         SubwayOutputView.inputUpwardToAdd();
         String upward = getInput();
 
-        lineValidator.checkStationToAdd(upward);
+        lineValidator.validateStationToAdd(upward);
 
         SubwayOutputView.inputDownwardToAdd();
         String downward = getInput();
 
-        lineValidator.checkStationToAdd(downward);
+        lineValidator.validateStationToAdd(downward);
 
         lineService.addLine(line, upward, downward);
         SubwayOutputView.noticeLineAdded();
@@ -75,7 +75,7 @@ public class LineController {
         SubwayOutputView.inputLineToDelete();
         String line = getInput();
 
-        lineValidator.checkLineToDelete(line);
+        lineValidator.validateLineToDelete(line);
 
         lineService.deleteLine(line);
         SubwayOutputView.noticeLineDeleted();

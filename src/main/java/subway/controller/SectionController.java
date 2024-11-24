@@ -51,17 +51,17 @@ public class SectionController {
         SubwayOutputView.inputLineToAddSection();
         String line = getInput();
 
-        sectionValidator.checkLineToAdd(line);
+        sectionValidator.validateLineToAdd(line);
 
         SubwayOutputView.inputStationToAddSection();
         String station = getInput();
 
-        sectionValidator.checkStationToAdd(line, station);
+        sectionValidator.validateStationToAdd(line, station);
 
         SubwayOutputView.inputOrderToAddSection();
         int order = SubwayInputView.getOrder();
 
-        sectionValidator.checkOrderToAdd(line,order);
+        sectionValidator.validateOrderToAdd(line,order);
 
         sectionService.addSection(line, station, order);
         SubwayOutputView.noticeSectionAdded();
@@ -71,7 +71,7 @@ public class SectionController {
         SubwayOutputView.inputLineToDeleteSection();
         String line = getInput();
 
-        sectionValidator.checkLineToDelete(line);
+        sectionValidator.validateLineToDelete(line);
 
         SubwayOutputView.inputStationToDeleteSection();
         String station = getInput();

@@ -13,13 +13,13 @@ public class SectionValidator {
         this.mapRepository = MapRepository.getInstance();
     }
 
-    public void checkLineToAdd(String line) {
+    public void validateLineToAdd(String line) {
         if (!mapRepository.isLineInfoExist(line)) {
             throw new IllegalArgumentException(DataErrorMessage.NOT_FOUND_LINE.getMessage());
         }
     }
 
-    public void checkStationToAdd(String line, String station) {
+    public void validateStationToAdd(String line, String station) {
         if (!stationRepository.isStationExist(station)) {
             throw new IllegalArgumentException(DataErrorMessage.NOT_FOUND_STATION.getMessage());
         }
@@ -29,13 +29,13 @@ public class SectionValidator {
         }
     }
 
-    public void checkOrderToAdd(String line, int order) {
+    public void validateOrderToAdd(String line, int order) {
         if (!mapRepository.findLineInfo(line).canAddStation(order)) {
             throw new IllegalArgumentException(DataErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
-    public void checkLineToDelete(String line) {
+    public void validateLineToDelete(String line) {
         if (!mapRepository.isLineInfoExist(line)) {
             throw new IllegalArgumentException(DataErrorMessage.NOT_FOUND_LINE.getMessage());
         }

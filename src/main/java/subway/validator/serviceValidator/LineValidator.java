@@ -15,7 +15,7 @@ public class LineValidator {
         this.lineRepository = LineRepository.getInstance();
     }
 
-    public void checkLineToAdd(String line) {
+    public void validateLineToAdd(String line) {
         if (line.length() <= LINE_NAME_LENGTH) {
             throw new IllegalArgumentException(DataErrorMessage.LINE_NAME_LENGTH_INVALID.getMessage());
         }
@@ -25,13 +25,13 @@ public class LineValidator {
         }
     }
 
-    public void checkStationToAdd(String station) {
+    public void validateStationToAdd(String station) {
         if (!stationRepository.isStationExist(station)) {
             throw new IllegalArgumentException(DataErrorMessage.NOT_FOUND_STATION.getMessage());
         }
     }
 
-    public void checkLineToDelete(String line) {
+    public void validateLineToDelete(String line) {
         if (!lineRepository.isLineExist(line)) {
             throw new IllegalArgumentException(DataErrorMessage.NOT_FOUND_LINE.getMessage());
         }

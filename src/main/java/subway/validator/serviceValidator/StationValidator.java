@@ -15,7 +15,7 @@ public class StationValidator {
         this.mapRepository = MapRepository.getInstance();
     }
 
-    public void checkStationToAdd(String station) {
+    public void validateStationToAdd(String station) {
         if (station.length() <= STATION_NAME_LENGTH) {
             throw new IllegalArgumentException(DataErrorMessage.STATION_NAME_LENGTH_INVALID.getMessage());
         }
@@ -25,7 +25,7 @@ public class StationValidator {
         }
     }
 
-    public void checkStationToDelete(String station) {
+    public void validateStationToDelete(String station) {
         if (!stationRepository.isStationExist(station)) {
             throw new IllegalArgumentException(DataErrorMessage.NOT_FOUND_STATION.getMessage());
         }
